@@ -47,3 +47,17 @@ running Vagrant:
     $ ln -sr vagrant_ubuntu18_private_key /mnt/.../ubuntu18/.vagrant/machines/default/virtualbox/private_key
     $ vagrant reload --provision
 
+# 2023-0827 17:53
+=================
+    ubuntu18$ vagrant ssh
+    $ cd ../shared_directory/scratch
+    $ go run main.go run echo hello Dnipro
+Hello, Azrubael!
+running [echo hello Dnipro] as PID 37626
+    $ go run main.go run /bin/bash
+Hello, Azrubael!
+running [/bin/bash] as PID 37556
+    $ ps
+    PID TTY          TIME CMD
+   2605 pts/0    00:00:00 bash
+  37632 pts/0    00:00:00 ps
