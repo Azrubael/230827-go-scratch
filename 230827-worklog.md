@@ -22,12 +22,14 @@ Vagrant.configure("2") do |config|
    end
 
    config.vm.provision "shell", inline: <<-SHELL
-     cd Downloads
      apt-get update
-     apt install -y mc tree zip unzip
-     wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+     apt-get install -y mc tree zip unzip
      rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
-     apt install -y go1.21.0.linux-amd64.tar.gz
+     cd ~
+     wget -O https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+     tar -xvf ~/go1.21.0.linux-amd64.tar.gz
+     mv ~/go/ /usr/local/
+     mkdir ~/go
      export PATH=$PATH:/usr/local/go/bin
      go version
    SHELL
@@ -42,9 +44,9 @@ by the user running Vagrant. This is a strict requirement from
 SSH itself. Please fix the following key to be owned by the user
 running Vagrant:
 
-/mnt/SSDATA/CODE/DevOpsCompl20/230824-VagrantVMs/ubuntu18/.vagrant/machines/default/virtualbox/private_key
+/mnt/.../ubuntu18/.vagrant/machines/default/virtualbox/private_key
 
 
-    $ ln -sr $HOME/.ssh/vagrant_ubuntu18_private_key /mnt/SSDATA/CODE/DevOpsCompl20/230824-VagrantVMs/ubuntu18/.vagrant/machines/default/virtualbox/private_key
+    $ ln -sr vagrant_ubuntu18_private_key /mnt/.../ubuntu18/.vagrant/machines/default/virtualbox/private_key
     $ vagrant reload --provision
 
